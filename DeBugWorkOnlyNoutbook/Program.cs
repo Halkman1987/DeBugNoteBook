@@ -16,6 +16,7 @@ namespace DeBugWorkOnlyNoutbook
             var bot = new BotWorker();
             bot.Initialize();
             bot.Start();
+            
             string command;
             do
             {

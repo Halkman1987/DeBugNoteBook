@@ -15,30 +15,29 @@ namespace DeBugWorkOnlyNoutbook
         private Messanger messanger;
         private Dictionary<long, Conversation> chatList;
 
-
         public BotMessageLogic(ITelegramBotClient botClient)
         {
             messanger = new Messanger();
             chatList = new Dictionary<long, Conversation>();
             this.botClient = botClient;
         }
-        public async Task Response(Update e)
+        public async Task Response(Update e) // 
         {
             var Id = e.Id;
-            if (!chatList.ContainsKey(Id))
+            if (!chatList.ContainsKey(Id))//сравниваем из коллекции Чатов ид чата
             {
-                var newchat = new Conversation(e.Message.Chat);
-                chatList.Add(Id, newchat);
+                var newchat = new Conversation(e.Message.Chat);//новая хранилка чата
+                chatList.Add(Id, newchat);   // добавляем в нее коллекцию с чатом
             }
-            var chatt = chatList[Id];
-            chatt.AddMessage(e.Message);
-            await SendTextMessage(chatt);
+            var chatt = chatList[Id]; // определяем ид чат-листа
+            chatt.AddMessage(e.Message);//ид чату добавляем сообщение в эту коллекцию 
+            await SendTextMessage(chatt);// передаем ид в метод Ответа пользователю 
         }
-        private async Task SendTextMessage(Conversation chat)
+        private async Task SendTextMessage(Conversation chatt) // метод ответа пользователю
         {
-            var text = messanger.CreateTextMessage(chat);
+            var text = messanger.CreateTextMessage(chatt); // метод для создания сообщения пользователю
             await botClient.SendTextMessageAsync(
-            chatId: chat.GetId(), text: text);
+            chatId: chatt.GetId(), text: text);
         }
-    }
+    }   
 }

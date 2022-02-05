@@ -11,22 +11,24 @@ namespace DeBugWorkOnlyNoutbook
 {
     public class BotWorker
     {
-        private BotMessageLogic logic;
         private ITelegramBotClient botClient;
+        private BotMessageLogic logic;
+
         CancellationToken cts = new CancellationToken();
         ReceiverOptions receiverOptions = new ReceiverOptions
         {
-            AllowedUpdates = { } // receive all update types
+            AllowedUpdates = { }
         };
-        public void Initialize()
+        public void Initialize()// Создание объекта бота
         {
             botClient = new TelegramBotClient(BotCredentials.BotToken);
             logic = new BotMessageLogic(botClient);
-
         }
-        public async void Start()
+        public async void Start() // Старт бота
         {
+            // Передаем методы для принятия сообщений , обработке исключений , прааметр обновлений и токен завершения
             botClient.StartReceiving(Bot_OnMessage, HandleErrorAsync, receiverOptions, cancellationToken: cts);
+            
         }
         async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
@@ -57,18 +59,41 @@ namespace DeBugWorkOnlyNoutbook
             Console.WriteLine(ErrorMessage);
             return Task.CompletedTask;
         }
-        public void Stop()
+        public void Stop() //Остановка бота
         {
             cts.ThrowIfCancellationRequested();
         }
+
+        // Асинхронный метод для получния сообщений
         async Task Bot_OnMessage(ITelegramBotClient botClient, Update e, CancellationToken cancellationToken)
         {
+            
             if (e.Message.Text != null)
             {
-                await logic.Response(e);
+                await logic.Response(e); // передаем сообщение в метод Респонз для дальнейшей обработки
             }
         }
-        private async Task SendTextWithKeyBoard(Conversation chat, string text, InlineKeyboardMarkup keyboard)
+        
+        public InlineKeyboardMarkup ReturnKeyBoard()
+        {
+            var buttonList = new List<InlineKeyboardButton>
+            {
+                     new InlineKeyboardButton("Пушкин")
+                     {
+                          // Text = "Пушкин"
+                          CallbackData = "pushkin"
+                     },
+
+                     new InlineKeyboardButton("Есенин")
+                     {
+                        // Text = "Есенин"
+                         CallbackData = "esenin"
+                     }
+            };
+            var keyboard = new InlineKeyboardMarkup(buttonList);
+            return keyboard;
+        }
+        private async Task SendTextWithKeyBoard(Conversation chat, string text, InlineKeyboardMarkup keyboard) // Метод для передачи клавиатуры
         {
             await botClient.SendTextMessageAsync(chatId: chat.GetId(), text: text, replyMarkup: keyboard);
         }

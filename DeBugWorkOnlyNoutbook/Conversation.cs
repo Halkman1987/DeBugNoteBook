@@ -39,7 +39,7 @@ namespace DeBugWorkOnlyNoutbook
             }
             return textMessages;
         }
-        public string GetLastMessage() => telegramMessages[telegramMessages.Count - 1].Text;
+        public string GetLastMessage() => telegramMessages[^1].Text; // метод для вывода последнего сообщения в чате
 
     }
 }

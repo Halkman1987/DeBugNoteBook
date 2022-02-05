@@ -9,7 +9,7 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace DeBugWorkOnlyNoutbook
 {
-    public class Messanger
+    public class Messanger // Ответ для пользователя
     {
         //public string CreateTextMessage(Conversation chat)
         //{
@@ -17,11 +17,12 @@ namespace DeBugWorkOnlyNoutbook
         //    var text = string.Join(delimiter, chat.GetTextMessages().ToArray());
         //    return text;
         //}
-        public string CreateTextMessage(Conversation chat)
+        public string CreateTextMessage(Conversation chat) // метод создания ответа для пользователя 
         {
             var text = "";
-            switch (chat.GetLastMessage())
+            switch (chat.GetLastMessage()) // получаем последнее сообщение и читаем его , в зависимости от содержания выводим кейсы
             {
+                
                 case "/saymehi":
                     text = "привет";
                     break;
@@ -35,28 +36,7 @@ namespace DeBugWorkOnlyNoutbook
             }
             return text;
         }
-        public InlineKeyboardMarkup ReturnKeyBoard()
-        {
-            var buttonList = new List<InlineKeyboardButton>
-                {
-                     new InlineKeyboardButton("Пушкин")
-                     {
-                          // Text = "Пушкин"
-                          CallbackData = "pushkin"
-                     },
-
-                     new InlineKeyboardButton("Есенин")
-                     {
-                        // Text = "Есенин"
-                         CallbackData = "esenin"
-                     }
-                };
-
-            var keyboard = new InlineKeyboardMarkup(buttonList);
-
-            return keyboard;
-
-        }
+       
 
     }
 }
