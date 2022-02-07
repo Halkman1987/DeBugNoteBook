@@ -35,9 +35,10 @@ namespace DeBugWorkOnlyNoutbook
         }
         private async Task SendTextMessage(Conversation chatt) // метод ответа пользователю
         {
-            var text = messanger.CreateTextMessage(chatt); // метод для создания сообщения пользователю
+            var text = messanger.CreateTextMess(chatt); // метод для создания сообщения пользователю
             await botClient.SendTextMessageAsync(
             chatId: chatt.GetId(), text: text);
         }
+        
     }   
 }

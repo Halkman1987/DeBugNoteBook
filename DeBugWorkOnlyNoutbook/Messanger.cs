@@ -11,6 +11,7 @@ namespace DeBugWorkOnlyNoutbook
 {
     public class Messanger // Ответ для пользователя
     {
+        private CommandParser parser;
         //public string CreateTextMessage(Conversation chat)
         //{
         //    var delimiter = ",";
@@ -36,7 +37,25 @@ namespace DeBugWorkOnlyNoutbook
             }
             return text;
         }
-       
-
+        public async Task MakeAnswer(Conversation chat)
+        {
+            var lastmess = chat.GetLastMessage();
+            if (parser.IsMessageCommand(lastmess))
+            {
+                await ExeсCommand(chat, lastmess);
+            }
+            else
+            {
+                var text = CreateTextMessage();
+                await SendText(chat, text);
+            }
+        }
+        public string CreateTextMess(Conversation chat) // метод создания ответа для пользователя 
+        {
+            var delimiter = ",";
+            var text = "История ваших сообщений: " + string.Join(delimiter, chat.GetTextMessages().ToArray());
+           
+            return text;
+        }
     }
 }

@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 
 namespace DeBugWorkOnlyNoutbook
 {
-    internal class CommandParser // Хранилище комманд
+    public class CommandParser // Хранилище комманд
     {
-        private List<IChatCommand> Command;
+        private List<IChatCommand> Command;//список команд
         public CommandParser()
         {
-            Command = new List<IChatCommand>();
+            Command = new List<IChatCommand>(); // добавление команды в лист
+        }
+        public bool IsTextCommand(string message) //метод проверки на текстовая ли команда
+        {
+            var command = Command.Find(x => x.CheckMessage(message)); //команду из Листа 
+
+            return command is IChatTextCommand;
         }
     }
 }
