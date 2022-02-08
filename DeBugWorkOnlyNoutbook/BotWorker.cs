@@ -74,25 +74,7 @@ namespace DeBugWorkOnlyNoutbook
             }
         }
         
-        public InlineKeyboardMarkup ReturnKeyBoard()
-        {
-            var buttonList = new List<InlineKeyboardButton>
-            {
-                     new InlineKeyboardButton("Пушкин")
-                     {
-                          // Text = "Пушкин"
-                          CallbackData = "pushkin"
-                     },
-
-                     new InlineKeyboardButton("Есенин")
-                     {
-                        // Text = "Есенин"
-                         CallbackData = "esenin"
-                     }
-            };
-            var keyboard = new InlineKeyboardMarkup(buttonList);
-            return keyboard;
-        }
+        
         private async Task SendTextWithKeyBoard(Conversation chat, string text, InlineKeyboardMarkup keyboard) // Метод для передачи клавиатуры
         {
             await botClient.SendTextMessageAsync(chatId: chat.GetId(), text: text, replyMarkup: keyboard);

@@ -40,15 +40,20 @@ namespace DeBugWorkOnlyNoutbook
         public async Task MakeAnswer(Conversation chat)
         {
             var lastmess = chat.GetLastMessage();
-            if (parser.IsMessageCommand(lastmess))
+            if (parser.IsTextCommand(lastmess))
             {
                 await ExeсCommand(chat, lastmess);
             }
             else
             {
-                var text = CreateTextMessage();
+                var text = CreateTextMessage(chat);
                 await SendText(chat, text);
             }
+        }
+        
+        public void ExeсCommand(Conversation chat,string lastmess)
+        {
+
         }
         public string CreateTextMess(Conversation chat) // метод создания ответа для пользователя 
         {
