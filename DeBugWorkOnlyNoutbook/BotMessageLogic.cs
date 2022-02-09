@@ -17,9 +17,10 @@ namespace DeBugWorkOnlyNoutbook
 
         public BotMessageLogic(ITelegramBotClient botClient)
         {
-            messanger = new Messanger();
-            chatList = new Dictionary<long, Conversation>();
             this.botClient = botClient;
+            messanger = new Messanger(botClient);
+            chatList = new Dictionary<long, Conversation>();
+           
         }
         public async Task Response(Update e) // 
         {
@@ -35,9 +36,10 @@ namespace DeBugWorkOnlyNoutbook
         }
         private async Task SendTextMessage(Conversation chatt) // метод ответа пользователю
         {
-            var text = messanger.CreateTextMess(chatt); // метод для создания сообщения пользователю
+            await messanger.MakeAnswer(chatt);
+           /* var text = messanger.CreateTextMess(chatt); // метод для создания сообщения пользователю
             await botClient.SendTextMessageAsync(
-            chatId: chatt.GetId(), text: text);
+            chatId: chatt.GetId(), text: text);*/
         }
         
     }   

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace DeBugWorkOnlyNoutbook.Commands
 {
-    public class AllOldMessage : AbstractCommand, IChatTextCommand
+    public class AllOldMessage : AbstractCommand
     {
-        public string ReturnText()
+      /*  public string ReturnText()
         {
             
-        }
+        }*/
     }
 }

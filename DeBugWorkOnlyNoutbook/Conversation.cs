@@ -27,18 +27,7 @@ namespace DeBugWorkOnlyNoutbook
             var m = telegramChat.Id;
             return m;
         }
-        public List<string> GetTextMessages() /// Возврат всех сообщений 
-        {
-            var textMessages = new List<string>();
-            foreach (var message in telegramMessages)
-            {
-                if (message.Text != null)
-                {
-                    textMessages.Add(message.Text);
-                }
-            }
-            return textMessages;
-        }
+       
         public string GetLastMessage() => telegramMessages[^1].Text; // метод для вывода последнего сообщения в чате
         
     }
