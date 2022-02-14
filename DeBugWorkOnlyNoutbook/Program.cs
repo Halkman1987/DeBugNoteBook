@@ -11,6 +11,32 @@ namespace Telegagram
     {
         static void Main()
         {
+           
+            static int BinarySearch(int value , int[] array)
+            {
+                var left = array[0];
+                var rigth = array.Length;
+                while(left <= rigth)
+                {
+                    var middle = (rigth + left) / 2;
+                    var midEl = array[middle];
+                    if (midEl == value)
+                    {
+                        return middle;
+                    }
+                    else if (value < midEl)
+                    {
+                        rigth = middle - 1;
+                    }
+                    else
+                    {
+                        left = middle + 1;
+                    }
+                }
+                return -1;
+            }
+            
+            
             var botClient = new TelegramBotClient("{YOUR_ACCESS_TOKEN_HERE}");
 
             using var cts = new CancellationTokenSource();
