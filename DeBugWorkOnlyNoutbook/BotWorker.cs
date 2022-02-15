@@ -28,9 +28,8 @@ namespace DeBugWorkOnlyNoutbook
         {
             // Передаем методы для принятия сообщений , обработке исключений , прааметр обновлений и токен завершения
             botClient.StartReceiving(Bot_OnMessage, HandleErrorAsync, receiverOptions, cancellationToken: cts);
-            
         }
-        async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+       /* async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
             if (update.Type != UpdateType.Message)
                 return;
@@ -46,7 +45,7 @@ namespace DeBugWorkOnlyNoutbook
                 chatId: chatId,
                 text: "You said:\n" + messageText,
                 cancellationToken: cancellationToken);
-        }
+        }*/
         Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
         {
             var ErrorMessage = exception switch
@@ -67,18 +66,11 @@ namespace DeBugWorkOnlyNoutbook
         // Асинхронный метод для получния сообщений
         async Task Bot_OnMessage(ITelegramBotClient botClient, Update e, CancellationToken cancellationToken)
         {
-            
             if (e.Message.Text != null)
             {
                 await logic.Response(e); // передаем сообщение в метод Респонз для дальнейшей обработки
             }
         }
         
-        
-        private async Task SendTextWithKeyBoard(Conversation chat, string text, InlineKeyboardMarkup keyboard) // Метод для передачи клавиатуры
-        {
-            await botClient.SendTextMessageAsync(chatId: chat.GetId(), text: text, replyMarkup: keyboard);
-        }
-       
     }
 }

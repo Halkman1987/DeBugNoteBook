@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using Telegram.Bot;
+using Telegram.Bot.Types.ReplyMarkups;
 
 namespace DeBugWorkOnlyNoutbook
 {
@@ -32,26 +32,10 @@ namespace DeBugWorkOnlyNoutbook
         {
             var command = Command.Find(x => x.CheckMessage(message)); //команду из Листа 
 
-            return command is IKeyboardCommand;
+            return command is IKeyBoardCommand;
         }
 
-        /*  public List<string> GetTextMessages() /// Возврат всех сообщений 
-          {
-              var textMessages = new List<string>();
-              foreach (var message in telegramMessages)
-              {
-                  if (message.Text != null)
-                  {
-                      textMessages.Add(message.Text);
-                  }
-              }
-              return textMessages;
-          }*/
-        /*public string GetMessageText(Conversation chat, string command)
-        {
-            var text =
-            return text;
-        }*/
+        
         public string GetMessageText(Conversation chat,string message)
         {
             var command = Command.Find(x => x.CheckMessage(message)) as IChatTextCommand;
@@ -65,6 +49,23 @@ namespace DeBugWorkOnlyNoutbook
             }
 
             return command.ReturnText();
+        }
+        public string GetInformationalMeggase(string message)
+        {
+            var command = Command.Find(x => x.CheckMessage(message)) as IKeyBoardCommand;
+
+            return command.InformationalMessage();
+        }
+        public void AddCallback(string message, Conversation chat)
+        {
+            var command = Command.Find(x => x.CheckMessage(message)) as IKeyBoardCommand;
+            command.AddCallBack(chat);
+        }
+        public InlineKeyboardMarkup GetKeyBoard(string message)
+        {
+            var command = Command.Find(x => x.CheckMessage(message)) as IKeyBoardCommand;
+
+            return command.ReturnKeyBoard();
         }
     }
 }

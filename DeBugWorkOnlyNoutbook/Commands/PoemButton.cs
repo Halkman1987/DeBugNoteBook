@@ -9,7 +9,7 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace DeBugWorkOnlyNoutbook
 {
-    public class PoemButton:AbstractCommand,IKeyboardCommand
+    public class PoemButton:AbstractCommand,IKeyBoardCommand
     {
         ITelegramBotClient botClient;
         public PoemButton(ITelegramBotClient botClient)
@@ -20,7 +20,7 @@ namespace DeBugWorkOnlyNoutbook
 
         public void AddCallBack(Conversation chat)
         {
-            this.botClient.AnswerCallbackQueryAsync(Bot_CallBack(chat))  ;
+            this.botClient += Bot_CallBack;
         }
 
         public string InformationalMessage()

@@ -13,47 +13,24 @@ namespace DeBugWorkOnlyNoutbook
     {
         ITelegramBotClient botClient;
         private CommandParser parser;
-
         public Messanger(ITelegramBotClient botClient)
         {
             this.botClient = botClient;
             parser = new CommandParser();
             RegistrCommands();
-
         }
         private void RegistrCommands()
         {
             parser.AddCommands(new SayHiCommand());
             parser.AddCommands(new PoemButton(botClient));
         }
-        
-        /*public string CreateTextMessage(Conversation chat) // метод создания ответа для пользователя 
-        {
-            var text = "";
-            switch (chat.GetLastMessage()) // получаем последнее сообщение и читаем его , в зависимости от содержания выводим кейсы
-            {
-                
-                case "/saymehi":
-                    text = "привет";
-                    break;
-                case "/askme":
-                    text = "как дела";
-                    break;
-                default:
-                    var delimiter = ",";
-                    text = "История ваших сообщений: " + string.Join(delimiter, chat.GetMessageText().ToArray());
-                    break;
-            }
-            return text;
-        }*/
         public async Task MakeAnswer(Conversation chat)
         {
             var lastmess = chat.GetLastMessage();// смотрим на последнее сообщение и совершаем действие в зависимости от его содержания
-            if (parser.IsMessageCommand(lastmess))
+            if (parser.IsMessageCommand(lastmess)) // отправляем на проверку на "текстовость" команды
             {
-                await ExecCommand(chat, lastmess);
+                await ExecCommand(chat, lastmess); // если ДА , то запускаем метод 
             }
-           
             else
             {
                 var text = CreateTextMessage();
@@ -69,30 +46,34 @@ namespace DeBugWorkOnlyNoutbook
         }
         public async Task ExecCommand(Conversation chat,string command)
         {
-            if (parser.IsTextCommand(command))
+            if (parser.IsTextCommand(command)) // текстовая колманда
             {
                 var text = parser.GetMessageText(chat, command);
 
                 await SendText(chat, text);
             }
-            if (parser.IsButtonCommand(command))
+            if (parser.IsButtonCommand(command)) // клавишная команда 
             {
                 var keys = parser.GetKeyBoard(command);
-                parser.AddCommands
+                var text = parser.GetInformationalMeggase(command);
+                parser.AddCallback(command, chat);
+
+                await SendTextWithKeyBoard(chat, text, keys);
             }
         }
-        /* public string CreateTextMess(Conversation chat) // метод создания ответа для пользователя 
-         {
-             var delimiter = ",";
-             var text = "История ваших сообщений: " + string.Join(delimiter, chat.GetTextMessages().ToArray());
-
-             return text;
-         }*/
         private string CreateTextMessage()
         {
             var text = "Not a command";
 
             return text;
+        }
+        private async Task SendTextWithKeyBoard(Conversation chat, string text, InlineKeyboardMarkup keyboard)
+        {
+            await botClient.SendTextMessageAsync(
+                  chatId: chat.GetId(),
+                  text: text,
+                  replyMarkup: keyboard
+                );
         }
     }
 }
