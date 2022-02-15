@@ -8,26 +8,29 @@ namespace DeBugWorkOnlyNoutbook
 {
     public class CommandParser // Хранилище комманд
     {
-        
+        private List<IChatCommand> Command;//список команд
         public void AddCommands(IChatCommand chatCommand)
         {
             Command.Add(chatCommand);
         }
-        private List<IChatCommand> Command;//список команд
+        
         public CommandParser()
         {
             Command = new List<IChatCommand>(); // добавление команды в лист
         }
+
         public bool IsMessageCommand(string message)
         {
             return Command.Exists(x => x.CheckMessage(message));
         }
+
         public bool IsTextCommand(string message) //метод проверки на текстовая ли команда
         {
             var command = Command.Find(x => x.CheckMessage(message)); //команду из Листа 
 
             return command is IChatTextCommand;
         }
+
         public bool IsButtonCommand(string message) //метод проверки на текстовая ли команда
         {
             var command = Command.Find(x => x.CheckMessage(message)); //команду из Листа 
