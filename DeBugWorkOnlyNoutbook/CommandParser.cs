@@ -18,6 +18,10 @@ namespace DeBugWorkOnlyNoutbook
         {
             Command = new List<IChatCommand>(); // добавление команды в лист
         }
+        public bool IsMessageCommand(string message)
+        {
+            return Command.Exists(x => x.CheckMessage(message));
+        }
         public bool IsTextCommand(string message) //метод проверки на текстовая ли команда
         {
             var command = Command.Find(x => x.CheckMessage(message)); //команду из Листа 
@@ -54,10 +58,10 @@ namespace DeBugWorkOnlyNoutbook
 
             if (command is IChatTextCommand)
             {
-               /* if (!(command as IChatTextCommand).DoAction(chat))
+                if (!(command as IChatTextCommand).DoAction(chat))
                 {
                     return "Ошибка выполнения команды!";
-                };*/
+                };
             }
 
             return command.ReturnText();

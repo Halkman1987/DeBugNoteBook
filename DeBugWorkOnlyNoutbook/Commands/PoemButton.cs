@@ -20,12 +20,12 @@ namespace DeBugWorkOnlyNoutbook
 
         public void AddCallBack(Conversation chat)
         {
-            this.botClient.AnswerCallbackQueryAsync(Bot_CallBack(,chat))  ;
+            this.botClient.AnswerCallbackQueryAsync(Bot_CallBack(chat))  ;
         }
 
         public string InformationalMessage()
         {
-            throw new NotImplementedException();
+            return "Выберите поэта";
         }
 
         public InlineKeyboardMarkup ReturnKeyBoard()

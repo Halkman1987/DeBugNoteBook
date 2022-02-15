@@ -26,12 +26,7 @@ namespace DeBugWorkOnlyNoutbook
             parser.AddCommands(new SayHiCommand());
             parser.AddCommands(new PoemButton(botClient));
         }
-        private string CreateTextMessage()
-        {
-            var text = "Not a command";
-
-            return text;
-        }
+        
         /*public string CreateTextMessage(Conversation chat) // метод создания ответа для пользователя 
         {
             var text = "";
@@ -54,14 +49,11 @@ namespace DeBugWorkOnlyNoutbook
         public async Task MakeAnswer(Conversation chat)
         {
             var lastmess = chat.GetLastMessage();// смотрим на последнее сообщение и совершаем действие в зависимости от его содержания
-            if (parser.IsTextCommand(lastmess))
+            if (parser.IsMessageCommand(lastmess))
             {
                 await ExecCommand(chat, lastmess);
             }
-            if (parser.IsButtonCommand(lastmess))
-            {
-                await ExecCommand(chat, lastmess);
-            }
+           
             else
             {
                 var text = CreateTextMessage();
@@ -89,12 +81,18 @@ namespace DeBugWorkOnlyNoutbook
                 parser.AddCommands
             }
         }
-       /* public string CreateTextMess(Conversation chat) // метод создания ответа для пользователя 
+        /* public string CreateTextMess(Conversation chat) // метод создания ответа для пользователя 
+         {
+             var delimiter = ",";
+             var text = "История ваших сообщений: " + string.Join(delimiter, chat.GetTextMessages().ToArray());
+
+             return text;
+         }*/
+        private string CreateTextMessage()
         {
-            var delimiter = ",";
-            var text = "История ваших сообщений: " + string.Join(delimiter, chat.GetTextMessages().ToArray());
-           
+            var text = "Not a command";
+
             return text;
-        }*/
+        }
     }
 }
