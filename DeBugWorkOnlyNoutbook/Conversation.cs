@@ -13,14 +13,15 @@ namespace DeBugWorkOnlyNoutbook
     {
         private Chat telegramChat;
         private List<Message> telegramMessages;
-        public Conversation(Chat chat)
+        public Conversation(Chat chat) //создаем хранилку инициализируя новый Чат (Chat telegramChat)
+                                       //и создав лист с сообщениями ( telegramMessages = new List<Message>())
         {
             telegramChat = chat;
             telegramMessages = new List<Message>();
         }
-        public void AddMessage(Message message)
+        public void AddMessage(Message message) //для добавления в хранилку новых сообщений
         {
-            telegramMessages.Add(message);
+            telegramMessages.Add(message);//добаляем в List<Message> telegramMessages
         }
         public long GetId()
         {

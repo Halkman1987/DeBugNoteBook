@@ -53,14 +53,14 @@ namespace DeBugWorkOnlyNoutbook
         }*/
         public async Task MakeAnswer(Conversation chat)
         {
-            var lastmess = chat.GetLastMessage();
+            var lastmess = chat.GetLastMessage();// смотрим на последнее сообщение и совершаем действие в зависимости от его содержания
             if (parser.IsTextCommand(lastmess))
             {
-                await ExeсCommand(chat, lastmess);
+                await ExecCommand(chat, lastmess);
             }
-            if (parser.IsMessageCommand(lastmess))
+            if (parser.IsButtonCommand(lastmess))
             {
-                await ExeсCommand(chat, lastmess);
+                await ExecCommand(chat, lastmess);
             }
             else
             {
@@ -75,13 +75,18 @@ namespace DeBugWorkOnlyNoutbook
                   text: text
                 );
         }
-        public async Task ExeсCommand(Conversation chat,string command)
+        public async Task ExecCommand(Conversation chat,string command)
         {
             if (parser.IsTextCommand(command))
             {
                 var text = parser.GetMessageText(chat, command);
 
                 await SendText(chat, text);
+            }
+            if (parser.IsButtonCommand(command))
+            {
+                var keys = parser.GetKeyBoard(command);
+                parser.AddCommands
             }
         }
        /* public string CreateTextMess(Conversation chat) // метод создания ответа для пользователя 

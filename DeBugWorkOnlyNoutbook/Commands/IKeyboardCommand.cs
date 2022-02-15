@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using Telegram.Bot;
+using Telegram.Bot.Types.ReplyMarkups;
 
 namespace DeBugWorkOnlyNoutbook
 {
     public interface IKeyboardCommand
     {
+        InlineKeyboardMarkup ReturnKeyBoard();
 
+        void AddCallBack(Conversation chat);
+
+        string InformationalMessage();
     }
 }

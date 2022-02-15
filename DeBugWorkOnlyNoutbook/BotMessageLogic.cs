@@ -22,17 +22,19 @@ namespace DeBugWorkOnlyNoutbook
             chatList = new Dictionary<long, Conversation>();
            
         }
-        public async Task Response(Update e) // 
+        public async Task Response(Update e) // получаем обновление (новое сообщение)
         {
             var Id = e.Id;
             if (!chatList.ContainsKey(Id))//сравниваем из коллекции Чатов ид чата
             {
-                var newchat = new Conversation(e.Message.Chat);//новая хранилка чата
-                chatList.Add(Id, newchat);   // добавляем в нее коллекцию с чатом
+                var newchat = new Conversation(e.Message.Chat);// создаем новую хранилку чата с помошью класса Conversations
+                                                               // где хранится сам чат 
+                chatList.Add(Id, newchat);   // добавляем в  Dictionary<long, Conversation> chatList  коллекцию с чатом
             }
+            // или 
             var chatt = chatList[Id]; // определяем ид чат-листа
-            chatt.AddMessage(e.Message);//ид чату добавляем сообщение в эту коллекцию 
-            await SendTextMessage(chatt);// передаем ид в метод Ответа пользователю 
+            chatt.AddMessage(e.Message);//по ид чата добавляем сообщение в эту коллекцию 
+            await SendTextMessage(chatt);// передаем ид в метод  для Ответа пользователю (самое важное) 
         }
         private async Task SendTextMessage(Conversation chatt) // метод ответа пользователю
         {

@@ -18,6 +18,16 @@ namespace DeBugWorkOnlyNoutbook
             CommandText = "/poem";
         }
 
+        public void AddCallBack(Conversation chat)
+        {
+            this.botClient.AnswerCallbackQueryAsync(Bot_CallBack(,chat))  ;
+        }
+
+        public string InformationalMessage()
+        {
+            throw new NotImplementedException();
+        }
+
         public InlineKeyboardMarkup ReturnKeyBoard()
         {
             var buttonList = new List<InlineKeyboardButton>

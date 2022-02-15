@@ -24,23 +24,25 @@ namespace DeBugWorkOnlyNoutbook
 
             return command is IChatTextCommand;
         }
-        public bool IsMessageCommand(string mess)
+        public bool IsButtonCommand(string message) //метод проверки на текстовая ли команда
         {
-            var b = false;
-            return b;
+            var command = Command.Find(x => x.CheckMessage(message)); //команду из Листа 
+
+            return command is IKeyboardCommand;
         }
-      /*  public List<string> GetTextMessages() /// Возврат всех сообщений 
-        {
-            var textMessages = new List<string>();
-            foreach (var message in telegramMessages)
-            {
-                if (message.Text != null)
-                {
-                    textMessages.Add(message.Text);
-                }
-            }
-            return textMessages;
-        }*/
+
+        /*  public List<string> GetTextMessages() /// Возврат всех сообщений 
+          {
+              var textMessages = new List<string>();
+              foreach (var message in telegramMessages)
+              {
+                  if (message.Text != null)
+                  {
+                      textMessages.Add(message.Text);
+                  }
+              }
+              return textMessages;
+          }*/
         /*public string GetMessageText(Conversation chat, string command)
         {
             var text =
