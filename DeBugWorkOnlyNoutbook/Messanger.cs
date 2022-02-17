@@ -21,7 +21,7 @@ namespace DeBugWorkOnlyNoutbook
         }
         private void RegistrCommands()
         {
-            parser.AddCommands(new SayHiCommand());
+            parser.AddCommands(new SayHiCommand(botClient));
             parser.AddCommands(new PoemButton(botClient));
         }
         public async Task MakeAnswer(Conversation chat)

@@ -11,8 +11,10 @@ namespace DeBugWorkOnlyNoutbook
 {
     public class SayHiCommand : AbstractCommand ,IChatTextCommand
     {
-        public SayHiCommand()
+        ITelegramBotClient botClient;
+        public SayHiCommand(ITelegramBotClient botClient)
         {
+            this.botClient = botClient;
             CommandText = "/saymehi";
         }
 

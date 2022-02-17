@@ -20,7 +20,7 @@ namespace DeBugWorkOnlyNoutbook
 
         public void AddCallBack(Conversation chat)
         {
-            this.botClient += Bot_CallBack;
+            //вот тут надо вызвать  Bot_CallBack который ниже
         }
 
         public string InformationalMessage()

@@ -45,7 +45,7 @@ namespace DeBugWorkOnlyNoutbook
 
             if (command is IChatTextCommand)
             {
-                if (!(command as IChatTextCommand).DoAction(chat))
+               // if (command as IChatTextCommand)//DoAction(chat))
                 {
                     return "Ошибка выполнения команды!";
                 };
