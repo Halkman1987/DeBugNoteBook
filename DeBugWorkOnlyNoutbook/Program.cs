@@ -14,21 +14,70 @@ namespace DeBugWorkOnlyNoutbook
     {
         public class Contact // модель класса
         {
+           
+            public Contact(long phoneNumber, String email)
+            {
+                PhoneNumber = phoneNumber;
+                Email = email;
+            }
+
             public Contact(string name, long phoneNumber, String email) // метод-конструктор
             {
                 Name = name;
                 PhoneNumber = phoneNumber;
                 Email = email;
             }
-
             public String Name { get; }
-            public long PhoneNumber { get; }
-            public String Email { get; }
+            public long PhoneNumber { get; set; }
+            public String Email { get; set; }
         }
-
-
         static void Main()
         {
+            //Contact contacT = new Contact(name:"d",phoneNumber:534533,email:"dbb");
+            var phoneUser = new Dictionary<string, Contact>()
+            {
+                ["Dima"] = new Contact(88002004000, "4345@bbbcb"),
+                ["Katya"] = new Contact(88003004000, "367645@bbbcb")
+            };
+            Console.WriteLine("All contact in TelephoneBook");
+            Allcontac(phoneUser);
+            phoneUser.Add("Igor", new Contact(88003004000, "367645@bbbcb"));
+            Console.WriteLine("All new contact in TelephoneBook");
+            Allcontac(phoneUser);
+            if (phoneUser.TryGetValue("Igor", out Contact contac))
+                contac.PhoneNumber = 4255544353;
+            static void Allcontac(Dictionary<string,Contact> phoneUser)
+            {
+                foreach (var c in phoneUser)
+                {
+                    Console.WriteLine($"{c.Key} + {c.Value.PhoneNumber}");
+                }
+                
+            }
+           
+
+
+            var cities = new Dictionary<string, string[]>();
+            cities.Add("Russia", new[] { "Moskoy", "Sanct", "Vologda" });
+            cities.Add("Ukraine", new[] {"Kiev","Liov","Odessa"});
+            cities.Add("Belarus", new[] {"Minsk", "Vitebs","Grodno"});
+           
+            foreach(var cit in cities)
+            {
+                Console.Write(cit.Key + ":");
+                foreach (var c in cit.Value)
+                    Console.Write(c + " ");
+                Console.WriteLine();
+            }
+            cities["Russia"] = new[] { "Ufa", "Kazan" };
+            cities.Remove("Belarus");
+            Console.WriteLine();
+            var RusCit = cities["Russia"];
+            Console.WriteLine("Goroda rossii");
+            foreach (var s in RusCit)
+                Console.WriteLine(s);
+
+//-----------------------------------------------------------------------------
             //var word = "Подсчитайте, сколько уникальных символов в этом предложении,используя HashSet<T>, учитывая знаки препинания,но не учитывая пробелы в начале и в конце предложения.";
             while (true)
             {
