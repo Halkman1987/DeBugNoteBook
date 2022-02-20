@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Text;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
+using System.Collections.Generic;
 
 namespace DeBugWorkOnlyNoutbook
 {
@@ -11,11 +12,98 @@ namespace DeBugWorkOnlyNoutbook
 
     class Programm
     {
+        public class Contact // модель класса
+        {
+            public Contact(string name, long phoneNumber, String email) // метод-конструктор
+            {
+                Name = name;
+                PhoneNumber = phoneNumber;
+                Email = email;
+            }
 
-        class User
-      
+            public String Name { get; }
+            public long PhoneNumber { get; }
+            public String Email { get; }
+        }
+
+
         static void Main()
         {
+            //var word = "Подсчитайте, сколько уникальных символов в этом предложении,используя HashSet<T>, учитывая знаки препинания,но не учитывая пробелы в начале и в конце предложения.";
+            while (true)
+            {
+                Console.WriteLine("Vvedite text");
+                string entertxt = Console.ReadLine();
+                Console.ReadKey();
+                var stroke = entertxt.ToCharArray();
+                var uniq = new HashSet<char>();
+                foreach (var q in stroke)
+                {
+                    uniq.Add(q);
+                }
+                Console.WriteLine($"S simbol :{uniq.Count}");
+                var sim = new[] { ',', ' ', '.' };
+
+                var numbe = new[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+
+                bool contnum = uniq.Overlaps(numbe);
+                Console.WriteLine($"Sodergit :{contnum}");
+
+                uniq.ExceptWith(sim);
+                Console.WriteLine($"Bez simbol :{uniq.Count}");
+
+                Console.WriteLine(uniq.Count);
+            }
+            
+            //------------------------------------------------------------
+            var months = new List<string>()
+            {
+                "Jan", "Feb", "Mar", "Apr", "May"
+            };
+            var missing = new ArrayList()
+            {
+                 1, 2, 3, 5, "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+            };
+            CompareList(missing, months);
+            static void CompareList(ArrayList missing, List<string> months)
+            {
+               
+                var newarray = new string[7];
+                missing.GetRange(4, 7).CopyTo(newarray);
+                months.AddRange(newarray);
+                
+                foreach (var ss in months)
+                    Console.WriteLine(ss);
+
+
+            }
+            //ArrayList GetRange(int index, int count)
+            //Возвращает новый ArrayList заданной длины, начиная с текущей
+            //позиции. Иначе говоря, «вырезает» из массива кусок в нужном месте.
+            //-------------------------------------------------------------------------------------------
+            List<Contact> phoneBook = new List<Contact>();
+            Contact newcontact = new Contact(name: "fdsgdf", phoneNumber: 546456, email: "fbvdfdfv");
+
+            AddUnique(newcontact, phoneBook);
+
+            static void AddUnique(Contact newcontact, List<Contact> phoneBook)
+            {
+                bool have = false;
+                foreach (var c in phoneBook)
+                {
+                    if (c.Name == newcontact.Name)
+                    {
+                        have = true;
+                        break;
+                    }
+                }
+                if (!have)
+                    phoneBook.Add(newcontact);
+                phoneBook.Sort((x, y) => String.Compare(x.Name, y.Name, StringComparison.Ordinal));
+                foreach (var cont in phoneBook)
+                    Console.WriteLine(cont.Name + " : " + cont.PhoneNumber);
+            }
+//--------------------------------------------------------------------------------------------
             var arrayList = new ArrayList()
            {
                1,
@@ -23,11 +111,11 @@ namespace DeBugWorkOnlyNoutbook
                "Сергей ",
                300,
            };
-            int sumN = 0 ;
+            int sumN = 0;
             StringBuilder text = new StringBuilder();
-            foreach(var el in arrayList)
+            foreach (var el in arrayList)
             {
-                if(el is int)
+                if (el is int)
                 {
                     sumN += (int)el;
                 }
@@ -42,7 +130,7 @@ namespace DeBugWorkOnlyNoutbook
                 Console.WriteLine(n);
             }
 
-            var months = new[]
+            var months1 = new[]
             {
                 "Jan", "Feb", "Mar", "Apr", "May" , "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
             };
@@ -52,13 +140,13 @@ namespace DeBugWorkOnlyNoutbook
                 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12
             };
             var combiarray = new ArrayList();
-            foreach(var n in numbers)
+            foreach (var n in numbers)
             {
-                combiarray.Add(months[n - 1]);
+                combiarray.Add(months1[n - 1]);
                 combiarray.Add(n);
             }
             foreach (var com in combiarray)
-                Console.Write($"{com}, " );
+                Console.Write($"{com}, ");
             Console.WriteLine("---------------------");
 
             var list = new ArrayList() { 2, "Lol" };
@@ -101,9 +189,9 @@ namespace DeBugWorkOnlyNoutbook
                 Console.WriteLine(i);
 
 
-            string text = File.ReadAllText("C:/Users/Дмитрий/Desktop/cdev_Text.txt");
+            string Ttext = File.ReadAllText("C:/Users/Дмитрий/Desktop/cdev_Text.txt");
             char[] delimiters = { ' ', '\r', '\n' };
-            var word = text.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+            var wordd = Ttext.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
             //Console.WriteLine(word.Length);
 
             /* UseString(70000);
