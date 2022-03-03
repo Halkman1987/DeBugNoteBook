@@ -69,8 +69,6 @@ namespace DeBugWorkOnlyNoutbook
         static void Main()
         {
             var phoneBook = new List<Contact>();
-
-            // добавляем контакты
             phoneBook.Add(new Contact("Игорь", "Николаев", 79990000001, "igor@example.com"));
             phoneBook.Add(new Contact("Сергей", "Довлатов", 79990000010, "serge@example.com"));
             phoneBook.Add(new Contact("Анатолий", "Карпов", 79990000011, "anatoly@example.com"));
@@ -84,18 +82,18 @@ namespace DeBugWorkOnlyNoutbook
                 //Console.Clear();
                 if (!parsed || pageNumber<1 || pageNumber>3)
                 {
-                    Console.WriteLine(" Fignya");
+                    Console.WriteLine(" Введите цифры от 1 до 3");
                 }
                 else
                 {
-                    var pageCon = phoneBook.Skip((pageNumber - 1) * 2).Take(2);
-                    Console.WriteLine();
-                    foreach (var entry in pageCon)
+                    var pagesortCont = phoneBook.OrderBy(p=> p.Name).OrderBy(p=>p.LastName).Skip((pageNumber - 1) * 2).Take(2). Select( p=>p);
+                    foreach (var entry in pagesortCont)
                         Console.WriteLine(entry.Name + " " + entry.LastName + ": " + entry.PhoneNumber);
+                    Console.WriteLine();
                 }
             }
 
-            var contacts = new List<Contact>()
+            /*var contacts = new List<Contact>()
             {
                new Contact() { Name = "Андрей", Phone = 7999945005 },
                new Contact() { Name = "Сергей", Phone = 799990455 },
@@ -103,9 +101,9 @@ namespace DeBugWorkOnlyNoutbook
                new Contact() { Name = "Игорь", Phone = 8884994 },
                new Contact() { Name = "Анна", Phone = 665565656 },
                new Contact() { Name = "Василий", Phone = 3434 }
-            };
+            };*/
            
-            while (true)
+          /*  while (true)
             {
                 var KeyChar = Console.ReadKey().KeyChar;
                 Console.Clear();
@@ -139,7 +137,7 @@ namespace DeBugWorkOnlyNoutbook
                     foreach (var c in page)
                         Console.WriteLine(c.Name + " " + c.Phone);
                 }
-            }
+            }*/
 
             
             //-------------------------------------------------------------
