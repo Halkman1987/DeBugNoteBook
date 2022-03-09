@@ -239,6 +239,11 @@ namespace DeBugWorkOnlyNoutbook
 
 
             string Ttext = File.ReadAllText("C:/Users/Дмитрий/Desktop/cdev_Text.txt");
+            string[] words = Ttext.Split(' ');
+            foreach (string word in words)
+            {
+                Console.WriteLine(word);
+            }
             char[] delimiters = { ' ', '\r', '\n' };
             var wordd = Ttext.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
             //Console.WriteLine(word.Length);
