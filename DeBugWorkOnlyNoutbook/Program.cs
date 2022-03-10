@@ -68,6 +68,65 @@ namespace DeBugWorkOnlyNoutbook
         }
         static void Main()
         {
+
+            List<int> vs = new List<int>();
+            while (true)
+            {
+                Console.WriteLine("Enter number ");
+                var KeyChar = Console.ReadKey().KeyChar;
+                var parsed = Int32.TryParse(KeyChar.ToString(), out int pageNumber);
+                vs.Add(pageNumber);
+                    Console.WriteLine();
+            }
+            static double Average(int[] numbers)
+            {
+               var res = numbers.Sum() / (double)numbers.Length;
+                return res;
+            }
+            var corrNum = (from c in contacts
+                           let phSt = contact.Phone.ToString() 
+                           where !phSt.StartWith('7')|| phSt.Length !=11
+                           select c)
+                           .Count(); 
+
+
+
+            static long Factorial(int number)
+            {
+                var numbers = new List<int>();
+                for (int i = 1; i <= number; i++)
+                    numbers.Add(i);
+                
+                 return numbers.Aggregate((x,y)=>x*y);
+            }
+            Console.WriteLine("Введите текст :");
+            
+          var txt = Console.ReadLine();
+          var punct = new List<char>(){ ' ', ',', '.', ';', ':', '!', '?' };
+            if (string.IsNullOrEmpty(txt))
+            {
+                Console.WriteLine("No text empty");
+            }
+            Console.WriteLine(" Text without punct");
+            var NoPunc = txt.Except(punct).ToArray();
+
+            void UnionWords(string a, string b)
+            {
+                var wor = a.Intersect(b).Count();
+
+            }
+            var softwareManufacturers = new List<string>()
+            {
+               "Microsoft", "Apple", "Oracle"
+            };
+
+            var hardwareManufacturers = new List<string>()
+            {
+               "Apple", "Samsung", "Intel"
+            };
+
+            var itCompanies = softwareManufacturers.Union(hardwareManufacturers);
+
             var phoneBook = new List<Contact>();
             phoneBook.Add(new Contact("Игорь", "Николаев", 79990000001, "igor@example.com"));
             phoneBook.Add(new Contact("Сергей", "Довлатов", 79990000010, "serge@example.com"));
@@ -80,13 +139,13 @@ namespace DeBugWorkOnlyNoutbook
                 var KeyChar = Console.ReadKey().KeyChar;
                 var parsed = Int32.TryParse(KeyChar.ToString(), out int pageNumber);
                 //Console.Clear();
-                if (!parsed || pageNumber<1 || pageNumber>3)
+                if (!parsed || pageNumber < 1 || pageNumber > 3)
                 {
                     Console.WriteLine(" Введите цифры от 1 до 3");
                 }
                 else
                 {
-                    var pagesortCont = phoneBook.OrderBy(p=> p.Name).OrderBy(p=>p.LastName).Skip((pageNumber - 1) * 2).Take(2). Select( p=>p);
+                    var pagesortCont = phoneBook.OrderBy(p => p.Name).OrderBy(p => p.LastName).Skip((pageNumber - 1) * 2).Take(2).Select(p => p);
                     foreach (var entry in pagesortCont)
                         Console.WriteLine(entry.Name + " " + entry.LastName + ": " + entry.PhoneNumber);
                     Console.WriteLine();
@@ -102,44 +161,44 @@ namespace DeBugWorkOnlyNoutbook
                new Contact() { Name = "Анна", Phone = 665565656 },
                new Contact() { Name = "Василий", Phone = 3434 }
             };*/
-           
-          /*  while (true)
-            {
-                var KeyChar = Console.ReadKey().KeyChar;
-                Console.Clear();
-                if (!Char.IsDigit(KeyChar))
-                {
-                    Console.WriteLine(" Fignya");
-                }
-                else
-                {
-                    IEnumerable<Contact> page = null;
+
+            /*  while (true)
+              {
+                  var KeyChar = Console.ReadKey().KeyChar;
+                  Console.Clear();
+                  if (!Char.IsDigit(KeyChar))
+                  {
+                      Console.WriteLine(" Fignya");
+                  }
+                  else
+                  {
+                      IEnumerable<Contact> page = null;
 
 
-                    switch (KeyChar)
-                    {
-                        case ('1'):
-                            page = contacts.Take(2);
-                            break;
+                      switch (KeyChar)
+                      {
+                          case ('1'):
+                              page = contacts.Take(2);
+                              break;
 
-                        case ('2'):
-                            page = contacts.Skip(2).Take(2);
-                            break;
-                        case ('3'):
-                            page = contacts.Skip(4).Take(2);
-                            break;
-                    }
-                    if(page == null)
-                    {
-                        Console.WriteLine($"Ошибка ввода, страницы {KeyChar} не существует");
-                        continue;
-                    }
-                    foreach (var c in page)
-                        Console.WriteLine(c.Name + " " + c.Phone);
-                }
-            }*/
+                          case ('2'):
+                              page = contacts.Skip(2).Take(2);
+                              break;
+                          case ('3'):
+                              page = contacts.Skip(4).Take(2);
+                              break;
+                      }
+                      if(page == null)
+                      {
+                          Console.WriteLine($"Ошибка ввода, страницы {KeyChar} не существует");
+                          continue;
+                      }
+                      foreach (var c in page)
+                          Console.WriteLine(c.Name + " " + c.Phone);
+                  }
+              }*/
 
-            
+
             //-------------------------------------------------------------
             List<Student> students = new List<Student>
             {
