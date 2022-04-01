@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeBugWorkOnlyNoutbook", "DeBugWorkOnlyNoutbook\DeBugWorkOnlyNoutbook.csproj", "{125046ED-B300-43EA-B18E-7C64A1295684}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeBugWorkOnlyNoutbook", "DeBugWorkOnlyNoutbook\DeBugWorkOnlyNoutbook.csproj", "{125046ED-B300-43EA-B18E-7C64A1295684}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructurPatterns", "StructurPatterns\StructurPatterns.csproj", "{E250E65B-C9E2-443E-98BB-39C805E28596}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Observer", "Observer\Observer.csproj", "{CF87577A-2DBE-40C2-A3FA-43F791BA85F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Single_Responsibility", "Single_Responsibility\Single_Responsibility.csproj", "{91F67EC2-0C55-4CCD-8841-21DD64938AE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "17_6_RefactoringWorkCalculator", "17_6_RefactoringWorkCalculator\17_6_RefactoringWorkCalculator.csproj", "{92F576FA-65B6-45FB-B4B6-14A9254722E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{125046ED-B300-43EA-B18E-7C64A1295684}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{125046ED-B300-43EA-B18E-7C64A1295684}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{125046ED-B300-43EA-B18E-7C64A1295684}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E250E65B-C9E2-443E-98BB-39C805E28596}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E250E65B-C9E2-443E-98BB-39C805E28596}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E250E65B-C9E2-443E-98BB-39C805E28596}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E250E65B-C9E2-443E-98BB-39C805E28596}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF87577A-2DBE-40C2-A3FA-43F791BA85F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF87577A-2DBE-40C2-A3FA-43F791BA85F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF87577A-2DBE-40C2-A3FA-43F791BA85F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF87577A-2DBE-40C2-A3FA-43F791BA85F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91F67EC2-0C55-4CCD-8841-21DD64938AE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91F67EC2-0C55-4CCD-8841-21DD64938AE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91F67EC2-0C55-4CCD-8841-21DD64938AE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91F67EC2-0C55-4CCD-8841-21DD64938AE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92F576FA-65B6-45FB-B4B6-14A9254722E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92F576FA-65B6-45FB-B4B6-14A9254722E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92F576FA-65B6-45FB-B4B6-14A9254722E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92F576FA-65B6-45FB-B4B6-14A9254722E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
